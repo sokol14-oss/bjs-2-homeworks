@@ -32,8 +32,7 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
   let debit = amount - contribution;
   let now = new Date();
   date = Math.ceil((date - now) / 1000 / 60 / 60 / 24 / 30.5);
-  let P = (percent / 100) / 12;
-  let st = P + P / (((1 + P)));
+  let P = percent / 100 / 12;
   let pay = debit * (P + (P / (((1 + P) ** date) - 1)));
   totalAmount = contribution + (pay * date);
   totalAmount = parseInt(totalAmount).toFixed(2);

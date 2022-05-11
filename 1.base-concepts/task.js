@@ -18,38 +18,30 @@ function solveEquation(a, b, c) {
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
   let totalAmount;
-  let arr = [percent, contribution, amount, date];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr.indexOf(NaN)) {
-      parseInt(arr[i]);
-    } else {
-      return `Параметр ${arr[i]} содержит неправильное значение ${arr[i]}`
-    }
+  if (isNaN(percent)) {
+    return `Параметр процентная ставка содержит неправильное значение ${percent}`
   }
-  /*if (percent === NaN) {
-    parseInt(percent);
+  if (isNaN(contribution)) {
+    return `Параметр Взнос содержит неправильное значение ${contribution}`
   }
-  else {
-    return `Параметр ${percent} содержит неправильное значение ${percent}`
+  if (isNaN(amount)) {
+    return `Параметр сумма содержит неправильное значение ${amount}`
   }
-  if (contribution === NaN) {
-    parseInt(contribution);
+  if (isNaN(date)) {
+    return `Параметр Дата содержит неправильное значение ${date}`
   }
-  else {
-    return `Параметр ${contribution} содержит неправильное значение ${contribution}`
+  if (percent === toString(percent)) {
+    Number(percent);
   }
-  if (amount === NaN) {
-    parseInt(amount);
+  if (contribution === toString(contribution)) {
+    Number(contribution);
   }
-  else {
-    return `Параметр ${amount} содержит неправильное значение ${amount}`
+  if (amount === toString(amount)) {
+    Number(amount);
   }
-  if (date === NaN) {
-    parseInt(date);
+  if (date === toString(date)) {
+    Number(date);
   }
-  else {
-    return `Параметр ${date} содержит неправильное значение ${date}`
-  }*/
 
 
   let debit = amount - contribution;
@@ -57,9 +49,10 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
   date = Math.ceil((date - now) / 1000 / 60 / 60 / 24 / 30.5);
   let P = percent / 100 / 12;
   let pay = debit * (P + (P / (((1 + P) ** date) - 1)));
-  totalAmount = contribution + (pay * date);
+  totalAmount = pay * date;
   totalAmount = totalAmount.toFixed(2);
-  totalAmount = parseInt(totalAmount);
+  totalAmount = Number(totalAmount);
+
 
   // код для задачи №2 писать здесь
 

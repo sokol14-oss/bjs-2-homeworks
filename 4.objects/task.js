@@ -15,29 +15,37 @@ Student.prototype.addMark = function (mark) {
     this.marks.push(mark);
   }
 }
-Student.prototype.addMarks = function (mark1, mark2, mark3) {
-  this.marks = mark1;
-  this.marks = mark2;
-  this.marks = mark3;
+Student.prototype.addMarks = function (...mark) {
   if (this.marks === undefined) {
-    this.marks = [...mark];
+    this.marks = this.marks;
   } else {
-    this.marks.push(...mark1, ...mark2, ...mark3);
+    this.marks.push(...mark);
   }
 }
 Student.prototype.getAverage = function () {
-  marks.reduce((prev, item) => {
-    return (prev + item) / this.marks.length
+  let res = marks.reduce(function (prev, item) {
+    let sum = prev + item;
+    sum / this.marks.length;
   });
-
+  return res;
 }
 Student.prototype.exclude = function (reason) {
-  delete Student.subject;
-  delete Student.marks;
-  Student.excluded = reason;
+  delete this.student.subject;
+  delete this.student.marks;
+  this.student.excluded = reason;
 }
 
-let student1 = new Student("Vasya", "Мужской", 20);
-let student2 = new Student("Petya", "Мужской", 20);
-let student3 = new Student("Lena", "Женский", 18);
+
 // ваш код для остальных методов
+let student1 = new Student("Tony", "male", 37);
+student1.setSubject("Algebra");
+student1.addMark(5);
+student1.addMark(4);
+student1.addMark(5);
+
+let student2 = new Student("Buzz", "female", 35);
+student2.setSubject("Geometry");
+student2.addMark(2);
+student2.addMark(3);
+student2.addMark(2);
+student2.exclude('low grades');

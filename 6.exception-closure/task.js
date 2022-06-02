@@ -1,20 +1,18 @@
 function parseCount(value) {
-    Number.parseInt(value);
-    if (isNaN(value)) {
-        const error = new Error("Невалидное значение");
-        throw error;
+    const number = Number.parseInt(value);
+    if (isNaN(number)) {
+        throw new Error("Невалидное значение");;
     }
-    return value;
+    return number
 }
 function validateCount(value) {
-    let result = parseCount(value);
     try {
-        parseCount(value);
+        let result = parseCount(value);
+        return result;
     } catch (error) {
         error;
         return error
     }
-    return result
 
 }
 
@@ -23,30 +21,28 @@ class Tirangle {
         this.a = a;
         this.b = b;
         this.c = c;
+        if ((a + b) < c || (b + c) < a || (c + a) < b) {
+            throw new Error("Треугольник с такими сторонами не существует");
+        }
     }
-    if((a + b) < c || (b + c) < a || (c + a) < b) {
-    const error = new Error("Треугольник с такими сторонами не существует");
-    throw error;
-}
-getPerimeter: function() {
-    return a + b + c;
-}
-getArea: function() {
-    const p = 1 / 2(a + b + c);
-    const s = Math.sqrt(p(p−a)(p−b)(p−c));
-    s = s.toFixed(3);
-    s = Number(s);
-    return s;
-}
+    getPerimeter() {
+        const perimeter = this.a + this.b + this.c;
+        return perimeter;
+    }
+    getArea() {
+        const p = perimeter / 2;
+        const s = Math.sqrt(p(p - this.a)(p - this.b)(p - this.c));
+        return Number(s.toFixed(2));
+    }
 }
 function getTriangle(a, b, c) {
     try {
-        const obj = new Tirangle(a, b, c);
+        return new Tirangle(a, b, c);
     } catch (error) {
-        error;
+        error
         return {
-            Tirangle.getPerimeter: error,
-            Tirangle.getArea: error
-        };
+            Tirangle.getPerimeter: "Ошибка! Треугольник не существует",
+            Tirangle.getArea: "Ошибка! Треугольник не существует"
+    };
     }
 }

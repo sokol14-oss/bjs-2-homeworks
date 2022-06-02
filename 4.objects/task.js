@@ -15,17 +15,21 @@ Student.prototype.addMark = function (mark) {
     this.marks.push(mark);
   }
 }
-Student.prototype.addMarks = function (mark1, mark2, ...mark3) {
-  this.mark1 = mark1;
-  this.mark2 = mark2;
-  this.mark3 = mark3;
-}
-Student.prototype.getAverage = function (ma) {
-  marks.forEach(callbackFunc);
-  function callbackFunc(mark) {
-    let sum = mark + mark;
-    return sum / marks.length;
+Student.prototype.addMarks = function (mark1, mark2, mark3) {
+  this.marks = mark1;
+  this.marks = mark2;
+  this.marks = mark3;
+  if (this.marks === undefined) {
+    this.marks = [...mark];
+  } else {
+    this.marks.push(...mark1, ...mark2, ...mark3);
   }
+}
+Student.prototype.getAverage = function () {
+  marks.reduce((prev, item) => {
+    return (prev + item) / this.marks.length
+  });
+
 }
 Student.prototype.exclude = function (reason) {
   delete Student.subject;
@@ -33,9 +37,7 @@ Student.prototype.exclude = function (reason) {
   Student.excluded = reason;
 }
 
-const student1 new Student("Vasya", "men", 20);
-const student2 new Student("Olya", "woman", 21);
-const student3 new Student("Oleg", "men", 18);
-
-
+let student1 = new Student("Vasya", "Мужской", 20);
+let student2 = new Student("Petya", "Мужской", 20);
+let student3 = new Student("Lena", "Женский", 18);
 // ваш код для остальных методов

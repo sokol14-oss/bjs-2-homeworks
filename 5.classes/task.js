@@ -7,7 +7,7 @@ class PrintEditionItem {
         this.type = null;
     }
     fix() {
-        return this.state * 1.5;
+        Number(this.state.toFixed(2)) = this.state * 1.5;
     }
     set control(number) {
         if (this.state < 0) {
@@ -16,10 +16,10 @@ class PrintEditionItem {
         if (this.state > 100) {
             this.state = 100;
         }
-        this.state = number;
+        this._state = number;
     }
     get control(number) {
-        return this.state;
+        return this._state;
     }
 }
 
@@ -62,7 +62,7 @@ class Library {
         this.books = [];
     }
     addBook(book) {
-        if (state > 30) {
+        if (this.state > 30) {
             this.books.push(book)
         }
 

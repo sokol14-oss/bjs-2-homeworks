@@ -7,19 +7,23 @@ class PrintEditionItem {
         this.type = null;
     }
     fix() {
-        Number(this.state.toFixed(2)) = this.state * 1.5;
+        this.state = this.state * 1.5;
+        this.state = Number(this.state.toFixed(2));
+
     }
     set control(number) {
-        if (this.state < 0) {
-            this.state = 0;
+        if (number < 0) {
+            number = 0;
         }
-        if (this.state > 100) {
-            this.state = 100;
+        if (number > 100) {
+            number = 100;
         }
-        this._state = number;
+        this.state = number;
+        return this.state;
     }
-    get control(number) {
-        return this._state;
+    get control() {
+
+        return this.state;
     }
 }
 
@@ -38,7 +42,7 @@ class Book extends PrintEditionItem {
 }
 class NovelBook extends Book {
     constructor(name, releaseDate, pagesCount, author) {
-        super(name, releaseDate, pagesCount, , author);
+        super(name, releaseDate, pagesCount, author);
         this.type = "novel";
 
     }
@@ -55,7 +59,6 @@ class DetectiveBook extends Book {
         this.type = "detective";
     }
 }
-console.log(PrintEditionItem);
 class Library {
     constructor(name, books) {
         this.name = "";
@@ -68,7 +71,7 @@ class Library {
 
     }
     findBookBy(type, value) {
-        let res = this.books.find((item) => item === [type] || item === [value]);;
+        let res = this.books.find((item) => item === [type] || item === [value]);
         if (res === undefined) {
             return null
         }

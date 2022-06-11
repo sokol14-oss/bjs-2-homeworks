@@ -27,7 +27,7 @@ class Tirangle {
         return this.a + this.b + this.c;
     }
     getArea() {
-        const p = getPerimeter() / 2;
+        const p = this.getPerimeter() / 2;
         const s = Math.sqrt(p(p - this.a)(p - this.b)(p - this.c));
         return Number(s.toFixed(2));
     }

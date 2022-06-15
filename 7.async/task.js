@@ -1,47 +1,50 @@
 class AlarmClock {
-    constructor(alarmCollection, timerId) {
+    constructor() {
         this.alarmCollection = [];
         this.timerId = null;
     }
     addClock(time, callback, id) {
-        if (id === false) {
+        if (!id) {
             throw new Error('Нужен Id');
         }
-        if (this.addClock.id === id) {
-            try {
-                this.addClock.id === id;
-            } catch (err) {
-                console.error('Такой Id уже существует');
-            }
-            this.alarmCollection.push({ id: this.id, callback: this.callback, time: this.time })
+        if (this.alarmCollection.some((item) => item.id === this.addClock.id)) {
+            console.error("Ошибка");
         }
+        this.alarmCollection.push({ time: time, callback: callback, id: id })
     }
+
+
     removeClock(id) {
         let alarmCollection1 = this.alarmCollection;
-        let alarmCollection2 = this.alarmCollection.filter((item) => item === id);
-        return alarmCollection1.length === alarmCollection2.length;
+        this.alarmCollection = this.alarmCollection.filter((item) => item.id != id);
+        if (alarmCollection1.length != this.alarmCollection.length) {
+            return true
+        }
     }
     getCurrentFormattedTime() {
-        return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        return new Date().toLocaleTimeString("ru", { hour: '2-digit', minute: '2-digit' });
     }
     start() {
-        if (this.start === true) {
+        if (this.timerId) {
             return;
         }
-        setInterval(this.alarmCollection.forEach(time)=> {
-            this.addClock.time === this.getCurrentFormattedTime;
-            return this.callback();
-        })
+        this.timerId = setInterval(check, 1000);
+        const checklock(time) => {
+            if (getCurrentFormattedTime() === this.alarmCollection.time) {
+                return this.callback;
+            }
+            const check = this.alarmCollection.forEach(checklock);
+        }
 
     }
     stop() {
         if (this.addClock.id === true) {
             clearInterval(this.timerId);
         }
-        this.timerId === null;
+        this.timerId = null;
     }
     printAlarms() {
-        return this.alarmCollection.forEach((item) => this.item.id + this.item.time);
+        console.log(this.alarmCollection.forEach((item) => this.item.id + this.item.time));
     }
     clearAlarms() {
         this.stop();

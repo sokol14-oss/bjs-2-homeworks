@@ -76,10 +76,9 @@ class Library {
         this.books = [];
     }
     addBook(book) {
-        if (this.state > 30) {
-            this.books.push(book)
+        if (this.book > 30) {
+            this.books.push(book);
         }
-
     }
     findBookBy(type, value) {
         let res = this.books.find((item) => item === [type] || item === [value]);
@@ -112,6 +111,7 @@ library.addBook(
         1008
     )
 );
+library.book = 100;
 library.addBook(
     new FantasticBook(
         "Аркадий и Борис Стругацкие",
@@ -128,3 +128,4 @@ console.log(library.findBookBy("name", "Властелин колец")); //null
 console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
 library.giveBookByName("Машина времени");
 console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
+console.log(library.books);

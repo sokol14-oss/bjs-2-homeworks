@@ -76,7 +76,7 @@ class Library {
         this.books = [];
     }
     addBook(book) {
-        if (this.book > 30) {
+        if (book.state > 30) {
             this.books.push(book);
         }
     }
@@ -88,15 +88,13 @@ class Library {
         return res;
     }
     giveBookByName(bookName) {
-        function search(element) {
-            return element === bookName;
-        }
-        let elem = this.books.findIndex(search);
-        if (elem === -1) {
-            return null;
-        }
-        return this.books.splice(0, elem);
-
+        const elem = this.books.findIndex(function (item, i) {
+            if (i === -1) {
+                return null;
+            }
+            return bookName === item;
+        });
+        return this.books.splice(elem);
     }
 }
 
@@ -111,7 +109,6 @@ library.addBook(
         1008
     )
 );
-library.book = 100;
 library.addBook(
     new FantasticBook(
         "Аркадий и Борис Стругацкие",

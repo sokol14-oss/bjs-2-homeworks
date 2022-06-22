@@ -26,10 +26,11 @@ class AlarmClock {
         if (this.timerId) {
             return;
         }
-        this.timerId = setInterval(forEach(checkClock), 1000);
-        const checkClock(time) => {
+        this.timerId = setInterval(a, 1000);
+        const a = () => this.alarmCollection.forEach(checkClock);
+        const checkClock = (item) => {
             if (this.getCurrentFormattedTime() === item.time) {
-                callback();
+                item.callback();
             }
         }
 
@@ -50,4 +51,5 @@ class AlarmClock {
 }
 
 let phoneAlarm = new AlarmClock();
-phoneAlarm.addClock("09:000", () => console.log("Вставай"), 1);
+phoneAlarm.addClock("09:00", () => console.log("Вставай"), 1);
+phoneAlarm.addClock("14:43", () => console.log("Вставай"), 2);
